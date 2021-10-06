@@ -1,5 +1,5 @@
 # Bitmap Cutter Tool
-Cut the bitmap file to w piece by width and h piece by height.
+Cut the bitmap file to w piece(s) by width and h piece(s) by height.
 
 ## Re-compile
 Open terminal and run command: `g++ -o program_name main.cpp header.h handle.cpp bitmap.h -std=c++17`.
