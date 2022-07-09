@@ -2,6 +2,8 @@
 #define _BITMAP_H_
 
 #include <stdint.h>
+#include <string>
+#include <cstring>
 
 struct FILEHEADER {
 	int32_t FileSize;
@@ -24,20 +26,23 @@ struct INFORHEADER { //40 bytes DIB format
 };
 
 struct Bitmap { //for 24 bits format
-public:
 	char Signature[3];
 	FILEHEADER bmpFileHeader;
 	INFORHEADER bmpInfoHeader;
 	int32_t bytes_per_row;
 	int8_t** data;
-/*	Bitmap(){
-
-	}
-	~Bitmap(){
-		for(int i = 0; i < this->bmpInfoHeader.Height; ++i)
-			delete[] data[i];
-		delete[] data;
-	}*/
 };
+
+void bmpFileWriter(char* filePath, Bitmap* bmp);
+
+Bitmap* bmpCrop(Bitmap* source, int x_pos, int y_pos, int newWidth, int newHeight);
+
+bool bmpFileReader(char* fileName, Bitmap*& bmp);
+
+void bmpFreeMemory(Bitmap*& bmp);
+
+char* fileNameGenerator(std::string fileName, int num);
+
+bool bmpSplit(char* fileName, int h, int w);
 
 #endif
